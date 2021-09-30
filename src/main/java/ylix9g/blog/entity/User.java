@@ -4,6 +4,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @Entity
@@ -17,6 +18,9 @@ public class User {
   @ManyToOne
   @JoinColumn(name = "role_id")
   private Role role;
+
+  @OneToMany(mappedBy = "user")
+  private List<Article> articles;
 
   private String login;
 
