@@ -1,0 +1,41 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en">
+<body>
+<header th:fragment="header" id="header" class="navbar navbar-expand-lg navbar-light border-bottom shadow-sm">
+  <div class="container">
+    <a th:href="@{/}" class="navbar-brand" th:text="${@environment.getProperty('spring.application.name')}"></a>
+    <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#header-main-menu" aria-controls="header-main-menu" aria-expanded="false" aria-label="Toogle header main menu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="header-main-menu">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a href="#" class="nav-link" aria-current="page">Главная</a>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link">Лучшие статьи</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a href="#" class="nav-link dropdown-toggle" id="header-categories-dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Категории
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="header-categories-dropdown">
+            <li th:each="category : ${@categoryService.findAllSortedByOrder()}">
+              <a th:href="@{/}" class="dropdown-item" th:text="${category.name}"></a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <form class="d-flex">
+        <div class="input-group">
+          <input type="search" class="form-control" placeholder="Поиск" aria-label="Поиск">
+          <button type="submit" class="btn btn-outline-success">Поиск</button>
+        </div>
+      </form>
+      <a th:href="@{/login}" class="btn btn-outline-primary ms-2">Вход</a>
+      <a th:href="@{/registration}" class="btn btn-outline-primary ms-2">Регистрация</a>
+    </div>
+  </div>
+</header>
+</body>
+</html>
