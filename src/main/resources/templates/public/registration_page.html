@@ -8,28 +8,33 @@
     <div class="col-6 offset-3">
       <div class="p-3 border shadow-sm">
         <h2 class="h2 text-center">Регистрация</h2>
-        <form th:action="@{/registration}" method="post" th:object="${user}">
+        <form th:action="@{/registration}" method="post" class="needs-validation" th:object="${user}" novalidate>
           <div class="mb-3">
             <label for="registration-user-login" class="form-label">Логин</label>
-            <input type="text" th:field="*{login}" placeholder="Введите логин..." id="registration-user-login" class="form-control">
+            <input type="text" th:field="*{login}" placeholder="Введите логин..." id="registration-user-login" class="form-control" th:classappend="${#fields.hasErrors('login') ? 'is-invalid' : ''}">
+            <div class="invalid-feedback" th:errors="*{login}"></div>
             <div id="registration-user-login-help" class="form-text">* Логин может состоять из букв латинского алфавита, символа нижнего подчеркивания и цифр, но не должен начинаться с цифры</div>
           </div>
           <div class="mb-3">
             <label for="registration-user-password" class="form-label">Пароль</label>
-            <input type="password" th:field="*{password}" placeholder="Введите пароль..." id="registration-user-password" class="form-control">
+            <input type="password" th:field="*{password}" placeholder="Введите пароль..." id="registration-user-password" class="form-control" th:classappend="${#fields.hasErrors('password') ? 'is-invalid' : ''}">
+            <div class="invalid-feedback" th:errors="*{password}"></div>
             <div id="registration-user-password-help" class="form-text">* В пароле должны присутствовать буквы в нижнем и верхнем регистрах, цифры и спец. символы</div>
           </div>
           <div class="mb-3">
             <label for="registration-user-first-name" class="form-label">Имя</label>
-            <input type="text" th:field="*{firstName}" placeholder="Введите имя..." id="registration-user-first-name" class="form-control">
+            <input type="text" th:field="*{firstName}" placeholder="Введите имя..." id="registration-user-first-name" class="form-control" th:classappend="${#fields.hasErrors('firstName') ? 'is-invalid' : ''}">
+            <div class="invalid-feedback" th:errors="*{firstName}"></div>
           </div>
           <div class="mb-3">
             <label for="registration-user-last-name" class="form-label">Фамилия</label>
-            <input type="text" th:field="*{lastName}" placeholder="Введите фамилию..." id="registration-user-last-name" class="form-control">
+            <input type="text" th:field="*{lastName}" placeholder="Введите фамилию..." id="registration-user-last-name" class="form-control" th:classappend="${#fields.hasErrors('lastName') ? 'is-invalid' : ''}">
+            <div class="invalid-feedback" th:errors="*{lastName}"></div>
           </div>
           <div class="mb-3">
             <label for="registration-user-email" class="form-label">Адрес электронной почты</label>
-            <input type="text" th:field="*{email}" placeholder="Введите адрес электронной почты..." id="registration-user-email" class="form-control">
+            <input type="text" th:field="*{email}" placeholder="Введите адрес электронной почты..." id="registration-user-email" class="form-control" th:classappend="${#fields.hasErrors('email') ? 'is-invalid' : ''}">
+            <div class="invalid-feedback" th:errors="*{email}"></div>
             <div id="registration-user-email-help" class="form-text">* На данный адрес придёт ссылка для подтверждения регистрации</div>
           </div>
           <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
